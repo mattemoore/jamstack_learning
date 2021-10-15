@@ -7,6 +7,28 @@
     <body>
         <h1>Netlify and Jamstack Learning w/ the CDP Team</h1>
         <p>Simple static website to help learn how jamstack and netlify works</p>
-        <p>This will be replaced with dynamic content.</p>
+        <p id='foo'>This will be replaced with dynamic content.</p>
     </body>
+<script>
+    const jsonResponse = fetch('../.netlify/functions/hello-world').then((response) => { return response.json()});
+    jsonResponse.then((data) => {document.getElementById('foo').innerHTML = data.message;})
+</script>
 </html>
+
+<!-- .then(
+    function(response) {
+      if (response.status !== 200) {
+        console.log('Looks like there was a problem. Status Code: ' +
+          response.status);
+        return;
+      }
+
+      // Examine the text in the response
+      response.json().then(function(data) {
+        console.log(data);
+      });
+    }
+  )
+  .catch(function(err) {
+    console.log('Fetch Error :-S', err);
+  }); -->
